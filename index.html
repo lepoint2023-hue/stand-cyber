@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Attention aux QR codes</title>
+<style>
+  * { box-sizing: border-box; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: #eef1f6; color: #1a2233; line-height: 1.5;
+    display: flex; min-height: 100vh; align-items: center; justify-content: center;
+    padding: 18px;
+  }
+  .card {
+    width: 100%; max-width: 480px; background: #fff; border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.12); padding: 26px;
+  }
+
+  /* Etape 1 : l'appat */
+  #appat { text-align: center; }
+  .cadeau { font-size: 52px; line-height: 1; }
+  .bandeau {
+    margin: 18px 0; padding: 16px; border-radius: 12px;
+    background: #157347; color: #fff; font-size: 21px; font-weight: 700;
+  }
+  .spin {
+    width: 46px; height: 46px; margin: 22px auto 10px;
+    border: 5px solid rgba(0,0,0,.1); border-top-color: #157347;
+    border-radius: 50%; animation: r 1s linear infinite;
+  }
+  @keyframes r { to { transform: rotate(360deg); } }
+  .petit { color: #5b6b80; font-size: 16px; }
+
+  /* Etape 2 : la revelation */
+  #reveal { display: none; }
+  .stop {
+    background: #c0392b; color: #fff; text-align: center;
+    border-radius: 14px; padding: 26px 18px; margin-bottom: 18px;
+    animation: halo 1.5s ease-out infinite;
+  }
+  @keyframes halo {
+    0%   { box-shadow: 0 0 0 0 rgba(192,57,43,.6); }
+    70%  { box-shadow: 0 0 0 24px rgba(192,57,43,0); }
+    100% { box-shadow: 0 0 0 0 rgba(192,57,43,0); }
+  }
+  .stop .big { font-size: 30px; font-weight: 800; margin: 0 0 10px; }
+  .stop p { font-size: 20px; margin: 0; }
+  .intro { font-size: 19px; }
+  h2 { font-size: 22px; margin: 22px 0 10px; }
+  ul { padding-left: 20px; margin: 0; }
+  li { font-size: 18px; margin-bottom: 12px; }
+  .lien {
+    display: block; text-align: center; margin-top: 22px; padding: 14px;
+    font-size: 18px; font-weight: 700; text-decoration: none;
+    color: #fff; background: #1a73e8; border-radius: 10px;
+  }
+  .foot {
+    margin-top: 22px; padding-top: 14px; border-top: 1px solid #e2e7f0;
+    color: #5b6b80; font-size: 14px; text-align: center;
+  }
+  .foot b { color: #33415c; }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- ETAPE 1 : ce que le visiteur voit d'abord -->
+  <div id="appat">
+    <div class="cadeau">🎁</div>
+    <div class="bandeau">🎉 FÉLICITATIONS !<br>Vous avez gagné un cadeau…</div>
+    <div class="spin"></div>
+    <div class="petit">Notre calculateur recherche votre cadeau…<br>Vous allez le découvrir dans un instant !</div>
+  </div>
+
+  <!-- ETAPE 2 : la verite -->
+  <div id="reveal">
+    <div class="stop">
+      <p class="big">🛑 C'était un piège !</p>
+      <p>Vous venez de scanner un QR code malveillant.</p>
+    </div>
+
+    <p class="intro">
+      Rassurez-vous, ici <b>rien ne vous est arrivé</b> : c'est une
+      démonstration du stand. Mais un <b>vrai pirate</b> aurait pu vous
+      envoyer vers un faux site, vous voler un mot de passe ou piéger
+      votre téléphone — <b>rien qu'avec un QR code</b>.
+    </p>
+
+    <h2>👉 Les bons réflexes</h2>
+    <ul>
+      <li><b>Ne scannez pas</b> un QR code affiché n'importe où (parking, affiche, autocollant collé par-dessus…).</li>
+      <li>Après un scan, <b>vérifiez l'adresse</b> du site avant de taper quoi que ce soit.</li>
+      <li><b>Ne saisissez jamais</b> mot de passe ou code bancaire depuis un QR code reçu ou trouvé.</li>
+      <li>Méfiez-vous d'un message qui fait <b>peur</b> ou <b>trop plaisir</b> (« gagné », « urgent », « gratuit »).</li>
+      <li>Dans le doute&nbsp;: <b>ne scannez pas</b> et demandez à un proche ou à l'EPN.</li>
+    </ul>
+
+    <a class="lien" href="https://lepoint2023-hue.github.io/motdepasse/">
+      🔐 Testez la solidité d'un mot de passe
+    </a>
+
+    <div class="foot">
+      Démonstration de sensibilisation &mdash; <b>EPN de Sainte-Ode</b>,
+      <b>CPAS</b> &amp; <b>Police locale (ZP Centre Ardenne)</b><br>
+      Aucune donnée collectée. Merci de votre visite&nbsp;!
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Laisse l'appat visible ~6,5 s (un peu de suspense) puis revele le message.
+  setTimeout(function () {
+    document.getElementById('appat').style.display = 'none';
+    document.getElementById('reveal').style.display = 'block';
+    window.scrollTo(0, 0);
+  }, 6500);
+</script>
+</body>
+</html>
